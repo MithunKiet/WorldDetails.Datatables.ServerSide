@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+   
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered table-striped" id="tblCountry">
+                <thead>
+                    <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Continents</th>
+                      
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        bindDatatable();
+    });
+
+    function bindDatatable() {
+        $('#tblCountry').DataTable(
+            {
+                ajax: {
+                    url: "Home/GetData",
+                    type: "POST",
+                },
+                processing: true,
+                serverSide: true,
+                filter: true,
+                columns: [
+                    { data: "code", name: "code" },
+                    { data: "name", name: "name" },
+                    { data: "fullName", name: "fullname" },
+                    { data: "continent_code", name: "Continent_code" },
+
+
+                    
+                ]
+            }
+        );
+    }
+</script>
